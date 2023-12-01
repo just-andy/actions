@@ -3,5 +3,8 @@
   "main": "app.js",
   "dependencies": {
     "dayjs": "^1.11.10"
+  },
+  "scripts": {
+    "build": "cp src/index.html docs"
   }
 }
