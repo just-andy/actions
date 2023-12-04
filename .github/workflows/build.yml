@@ -36,6 +36,10 @@ jobs:
   deploy:
     name: Deploy Pages
     needs: build
+    # Grant GITHUB_TOKEN the permissions required to make a Pages deployment
+    permissions:
+      content: write # to deploy to Pages
+
     runs-on: ubuntu-latest
     if: github.ref == 'refs/heads/main'
     steps:
@@ -44,5 +48,9 @@ jobs:
         with:
           name: documentation
           path: ./docs
+      - name: Deploy to GitHub Pages
+        uses: JamesIves/github-pages-deploy-action@v4
+        with:
+          folder: docs # The folder the action should deploy.
       - name: Display structure of downloaded files
         run: ls -R
