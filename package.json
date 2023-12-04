@@ -5,9 +5,10 @@
     "node": "16.x"
   },
   "dependencies": {
+    "copyfiles": "^2.4.1",
     "dayjs": "^1.11.10"
   },
   "scripts": {
-    "build": "cp src/index.html docs/index.html"
+    "build": "npx copyfiles src/index.html docs/"
   }
 }
