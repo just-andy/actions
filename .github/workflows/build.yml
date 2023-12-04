@@ -36,6 +36,8 @@ jobs:
         with:
           name: documentation
           path: /src
+      - name: List files
+        run: ls -R
   # Single deploy job since we're just deploying
   deploy:
     name: Build Pages
