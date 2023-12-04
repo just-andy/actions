@@ -31,6 +31,11 @@ jobs:
         run: npm ci
       - name: Run Node Build
         run: npm run build --if-present
+      - name: Create Artifacts
+        uses: actions/upload-artifact@v3
+        with:
+          name: documentation
+          path: /src
   # Single deploy job since we're just deploying
   deploy:
     name: Build Pages
@@ -42,7 +47,7 @@ jobs:
       - name: Downloads
         uses: actions/download-artifact@v3
         with:
-          name: my-artifact
-
+          name: documentation
+          path: /docs
       - name: Display structure of downloaded files
         run: ls -R
