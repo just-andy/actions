@@ -1,6 +1,9 @@
 {
   "name": "simple",
   "main": "app.js",
+  "engines": {
+    "node": "16.x"
+  },
   "dependencies": {
     "dayjs": "^1.11.10"
   },
