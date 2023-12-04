@@ -21,8 +21,6 @@ jobs:
         uses: actions/setup-node@v3
         with:
           node-version: 16.x
-      - name: Make Directory
-        run: sudo mkdir docs/
       - name: Install Node Modules
         run: npm ci
       - name: Run Node Build
