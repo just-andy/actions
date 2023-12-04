@@ -29,21 +29,19 @@ jobs:
         uses: actions/upload-artifact@v3
         with:
           name: documentation
-          path: docs/
-      - name: List files
-        run: ls -R
+          path: ./docs
+
   # Single deploy job since we're just deploying
   deploy:
     name: Deploy Pages
     needs: build
     runs-on: ubuntu-latest
+    if: github.ref == 'refs/heads/main'
     steps:
-      - name: Checkout
-        uses: actions/checkout@v3
       - name: Downloads
         uses: actions/download-artifact@v3
         with:
           name: documentation
-          path: docs/
+          path: ./docs
       - name: Display structure of downloaded files
         run: ls -R
