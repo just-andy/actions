@@ -29,6 +29,9 @@ jobs:
           node-version: 16.x
       - name: Install Node Modules
         run: npm ci
+      - name: Create folder
+        run: |
+          mkdir -p docs && ls docs
       - name: Run Node Build
         run: npm run build --if-present
       - name: Create Artifacts
