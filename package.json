@@ -8,6 +8,6 @@
     "dayjs": "^1.11.10"
   },
   "scripts": {
-    "build": "cp src/index.html docs"
+    "build": "cp src/index.html docs/index.html"
   }
 }

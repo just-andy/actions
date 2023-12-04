@@ -35,7 +35,7 @@ jobs:
         uses: actions/upload-artifact@v3
         with:
           name: documentation
-          path: /src
+          path: docs/
       - name: List files
         run: ls -R
   # Single deploy job since we're just deploying
@@ -50,6 +50,6 @@ jobs:
         uses: actions/download-artifact@v3
         with:
           name: documentation
-          path: /docs
+          path: docs/
       - name: Display structure of downloaded files
         run: ls -R
