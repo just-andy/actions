@@ -29,7 +29,7 @@ jobs:
         uses: actions/upload-artifact@v3
         with:
           name: documentation
-          path: ./docs
+          path: ./dist
 
   # Single deploy job since we're just deploying
   deploy:
