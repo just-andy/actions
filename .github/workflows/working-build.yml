@@ -1,0 +1,48 @@
+on:
+    workflow_dispatch:
+    push:
+      branches: [main]
+  
+  # Allow only one concurrent deployment, skipping runs queued between the run in-progress and latest queued.
+  # However, do NOT cancel in-progress runs as we want to allow these production deployments to complete.
+  concurrency:
+    group: "pages"
+    cancel-in-progress: false
+  
+  jobs:
+    build:
+      name: Build
+      runs-on: ubuntu-latest
+      container: node:16
+      steps:
+        - name: Checkout repo
+          uses: actions/checkout@v3
+        - name: Setup Node
+          uses: actions/setup-node@v3
+          with:
+            node-version: 16.x
+        - name: Install Node Modules
+          run: npm ci
+        - name: Run Node Build
+          run: npm run build --if-present
+        - name: Create Artifacts
+          uses: actions/upload-artifact@v3
+          with:
+            name: documentation
+            path: ./dist
+  
+    # Single deploy job since we're just deploying
+    deploy:
+      name: Deploy Pages
+      needs: build
+      runs-on: ubuntu-latest
+      if: github.ref == 'refs/heads/main'
+      steps:
+        - name: Downloads
+          uses: actions/download-artifact@v3
+          with:
+            name: documentation
+            path: ./docs
+        - name: Display structure of downloaded files
+          run: ls -R
+  
