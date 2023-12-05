@@ -36,7 +36,7 @@ jobs:
       - name: Create Artifacts
         uses: actions/upload-artifact@v3
         with:
-          name: documentation
+          name: github-pages
           path: ./dist
   deploy:
     name: Deploy Pages
@@ -44,8 +44,11 @@ jobs:
     runs-on: ubuntu-latest
     if: github.ref == 'refs/heads/main'
     steps:
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v3
       - name: Downloads
         uses: actions/download-artifact@v3
         with:
-          name: documentation
-          path: ./docs
+          name: github-pages
+          path: ./dist
