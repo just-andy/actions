@@ -18,6 +18,9 @@ permissions:
 jobs:
   build:
     name: Build
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
     runs-on: ubuntu-latest
     container: node:16
     steps:
@@ -38,16 +41,6 @@ jobs:
         with:
           name: documentation
           path: ./docs
-      - run: ls -R
-
-  # Single deploy job since we're just deploying
-  deploy:
-    name: Deploy Pages
-    needs: build
-
-    runs-on: ubuntu-latest
-    if: github.ref == 'refs/heads/main'
-    steps:
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v3
