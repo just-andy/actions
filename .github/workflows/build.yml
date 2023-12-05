@@ -25,6 +25,8 @@ jobs:
         run: npm ci
       - name: Run Node Build
         run: npm run build --if-present
+      - name: Setup Pages
+        uses: actions/configure-pages@v4
       - name: Create Artifacts
         uses: actions/upload-artifact@v3
         with:
@@ -40,14 +42,6 @@ jobs:
     runs-on: ubuntu-latest
     if: github.ref == 'refs/heads/main'
     steps:
-      - name: Downloads
-        uses: actions/download-artifact@v3
-        with:
-          name: documentation
-          path: ./docs
       - name: Deploy to GitHub Pages
-        uses: JamesIves/github-pages-deploy-action@v4
-        with:
-          folder: docs # The folder the action should deploy.
-      - name: Display structure of downloaded files
-        run: ls -R
+        id: deployment
+        uses: actions/deploy-pages@v3
