@@ -36,7 +36,7 @@ jobs:
       - name: List items
         run: ls -l .automated-rendering/screenshot-capture/screenshots/
       - name: Create Artifacts
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-pages-artifact@v2
         with:
           name: github-pages
           path: ./dist
