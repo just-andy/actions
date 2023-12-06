@@ -33,8 +33,6 @@ jobs:
         run: npm run build --if-present
       - name: Setup Pages
         uses: actions/configure-pages@v4
-      - name: List items
-        run: ls -l .automated-rendering/screenshot-capture/screenshots/
       - name: Create Artifacts
         uses: actions/upload-pages-artifact@v2
         with:
